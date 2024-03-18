@@ -316,23 +316,13 @@ export default {
       });
     },
     setWindowsProps(viewer, StudyInstanceUID) {
-      const openWSI = this.mustOpenWSI();
       const openWindow = {};
-      if (viewer === 'OHIF' /*&& openWSI === false*/) {
+      if (viewer === 'OHIF') {
         openWindow.ohif = window.open('', `OHIFViewer-${StudyInstanceUID}`);
-      } else if (viewer === 'OHIFv2' && openWSI === false) {
+      } else if (viewer === 'OHIFv2') {
         openWindow.ohifv2 = window.open('', `OHIFV2Viewer-${StudyInstanceUID}`);
-      } /*else if (viewer === 'OHIF' && openWSI === true) {
-        openWindow.wsi = window.open('', `WSIViewer-${StudyInstanceUID}`);
-      }*/
+      }
       return openWindow;
-    },
-    mustOpenWSI() {
-      return (this.study.ModalitiesInStudy !== undefined
-        && this.study.ModalitiesInStudy.Value.length === 1
-        && this.study.ModalitiesInStudy.Value[0] === 'SM'
-        && process.env.VUE_APP_URL_VIEWER_SM !== undefined
-        && process.env.VUE_APP_URL_VIEWER_SM.length > 0);
     },
     showComments(study, flagView) {
       const params = {
