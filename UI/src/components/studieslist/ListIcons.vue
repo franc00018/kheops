@@ -63,7 +63,7 @@
         v-if="showViewerIcon"
         class="ml-1"
         :title="$t('viewer.ohif')"
-        @click.stop="openViewer('default')"
+        @click.stop="openViewer('OHIF')"
       >
         <visibility-icon
           width="24px"
@@ -295,21 +295,21 @@ export default {
         } else if (viewer === 'Slicer') {
           url = this.openSlicer(StudyInstanceUID, viewerToken);
           window.open(url, '_self');
-        } else if (viewer === 'OHIFv2') {
+        } else if (viewer === 'OHIFv2' && openWindow.ohifv2 !== undefined) {
           const queryparams = {
             url: `${process.env.VUE_APP_URL_API}/link/${viewerToken}/ohifservermetadata`,
             studyInstanceUIDs: StudyInstanceUID,
           };
           url = this.openOhifV2(queryparams);
-          openWindow.ohif.location.href = url;
-        } else if (viewer === 'default' && openWindow.ohif !== undefined) {
+          openWindow.ohifv2.location.href = url;
+        } else if (viewer === 'OHIF' && openWindow.ohif !== undefined) {
           const queryparams = {
             url: `${process.env.VUE_APP_URL_API}/link/${viewerToken}/ohifservermetadata`,
             studyInstanceUIDs: StudyInstanceUID,
           };
           url = this.openOhif(queryparams);
           openWindow.ohif.location.href = url;
-        } else if (viewer === 'default' && openWindow.wsi !== undefined) {
+        } else if (viewer === 'OHIF' && openWindow.wsi !== undefined) {
           openWindow.wsi.location.href = this.openWSI(StudyInstanceUID, viewerToken, sourceQuery);
         }
       }).catch(() => {
@@ -318,11 +318,13 @@ export default {
     setWindowsProps(viewer, StudyInstanceUID) {
       const openWSI = this.mustOpenWSI();
       const openWindow = {};
-      if (viewer === 'default' && openWSI === false) {
+      if (viewer === 'OHIF' /*&& openWSI === false*/) {
         openWindow.ohif = window.open('', `OHIFViewer-${StudyInstanceUID}`);
-      } else if (viewer === 'default' && openWSI === true) {
+      } else if (viewer === 'OHIFv2' && openWSI === false) {
+        openWindow.ohifv2 = window.open('', `OHIFV2Viewer-${StudyInstanceUID}`);
+      } /*else if (viewer === 'OHIF' && openWSI === true) {
         openWindow.wsi = window.open('', `WSIViewer-${StudyInstanceUID}`);
-      }
+      }*/
       return openWindow;
     },
     mustOpenWSI() {
