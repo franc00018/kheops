@@ -317,6 +317,7 @@
 	"valid": "Valider",
 	"viewer": {
 		"ohif": "Ouvrir OHIF",
+		"ohifv2": "Ouvrir OHIFv2",
 		"osirix": "Ouvrir OsiriX",
 		"slicer": "Ouvrir 3D Slicer",
 		"weasis": "Ouvrir Weasis"

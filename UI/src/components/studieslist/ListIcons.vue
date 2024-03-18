@@ -51,6 +51,17 @@
       <span
         v-if="showViewerIcon"
         class="ml-1"
+        :title="$t('viewer.ohifv2')"
+        @click.stop="openViewer('OHIFv2')"
+      >
+        <visibility-icon
+          width="24"
+          height="24"
+        />
+      </span>
+      <span
+        v-if="showViewerIcon"
+        class="ml-1"
         :title="$t('viewer.ohif')"
         @click.stop="openViewer('default')"
       >
@@ -284,6 +295,13 @@ export default {
         } else if (viewer === 'Slicer') {
           url = this.openSlicer(StudyInstanceUID, viewerToken);
           window.open(url, '_self');
+        } else if (viewer === 'OHIFv2') {
+          const queryparams = {
+            url: `${process.env.VUE_APP_URL_API}/link/${viewerToken}/ohifservermetadata`,
+            studyInstanceUIDs: StudyInstanceUID,
+          };
+          url = this.openOhifV2(queryparams);
+          openWindow.ohif.location.href = url;
         } else if (viewer === 'default' && openWindow.ohif !== undefined) {
           const queryparams = {
             url: `${process.env.VUE_APP_URL_API}/link/${viewerToken}/ohifservermetadata`,

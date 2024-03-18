@@ -29,6 +29,10 @@ export const Viewer = {
       const queryparamsString = httpoperations.getQueriesParameters(queryparams);
       return `${process.env.VUE_APP_URL_VIEWER}/viewer${queryparamsString}`;
     },
+		openOhifV2(queryparams) {
+			const queryparamsString = httpoperations.getQueriesParameters(queryparams);
+			return `${process.env.VUE_APP_URL_VIEWER_V2}/viewer${queryparamsString}`;
+		},
     openWSI(StudyInstanceUID, token) {
       const url = `${process.env.VUE_APP_URL_API}`
       const defaultFragParameters = 'token_type=bearer&expires_in=3600&scope=read%20write'

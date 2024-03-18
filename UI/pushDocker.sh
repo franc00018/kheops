@@ -1,4 +1,3 @@
-read -p "Tag name : " TAG
-echo $TAG
-docker build -t osirixfoundation/kheops-ui:${TAG} .
-docker push osirixfoundation/kheops-ui:${TAG}
+TAG="test-fp-02"
+docker build -t franc00018/kheops-ui:${TAG} .
+docker push franc00018/kheops-ui:${TAG}

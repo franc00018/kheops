@@ -334,6 +334,7 @@
 	"valid": "Valid",
 	"viewer": {
 		"ohif": "Open OHIF",
+		"ohifv2": "Open OHIFv2",
 		"osirix": "Open OsiriX",
 		"slicer": "Open 3D Slicer",
 		"weasis": "Open Weasis"

@@ -51,6 +51,10 @@ if [ -z "$KHEOPS_UI_VIEWER_URL" ]; then
     KHEOPS_UI_VIEWER_URL=https://ohif.kheops.online
 fi
 
+if [ -z "$KHEOPS_UI_VIEWER_URL_V2" ]; then
+    KHEOPS_UI_VIEWER_URL_V2=https://ohifv2.kheops.online
+fi
+
 if [ -z "$KHEOPS_UI_DISABLE_UPLOAD" ]; then
     KHEOPS_UI_DISABLE_UPLOAD=false
 fi
@@ -68,6 +72,7 @@ if [ -z "$SHOW_KHEOPS_UI_DELETE_CONTACT" ]; then
 fi
 
 sed -i "s|\%{kheops_ui_viewer_url}|$KHEOPS_UI_VIEWER_URL|g" $FILENAME
+sed -i "s|\%{kheops_ui_viewer_v2_url}|$KHEOPS_UI_VIEWER_URL_V2|g" $FILENAME
 sed -i "s|\%{kheops_ui_user_management}|$KHEOPS_UI_USER_MANAGEMENT_URL|g" $FILENAME
 sed -i "s|\%{kheops_ui_disable_upload}|$KHEOPS_UI_DISABLE_UPLOAD|g" $FILENAME
 sed -i "s|\%{kheops_ui_disable_autocomplet}|$KHEOPS_UI_DISABLE_AUTOCOMPLET|g" $FILENAME
