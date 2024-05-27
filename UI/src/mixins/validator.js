@@ -5,7 +5,7 @@ export const validator = {
   methods: {
     // https://stackoverflow.com/questions/5717093/check-if-a-javascript-string-is-a-url
     checkUrl(url) {
-      const pattern = new RegExp('^https?:\\/\\/', 'i'); // protocol
+      const pattern = /(http|ftp|https):\/\/[\w-]+/; // domain and path
       return !!pattern.test(url);
     },
     tokenStatus(itemToken) {
